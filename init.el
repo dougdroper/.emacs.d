@@ -31,6 +31,16 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
 
+  (package-refresh-contents)
+
+  ;; Download Evil
+  (unless (package-installed-p 'evil)
+   (package-install 'evil))
+
+  ;; Enable Evil
+  (require 'evil)
+  (evil-mode 1)
+
   (eval-when-compile
     (setq use-package-always-ensure t
           use-package-enable-imenu-support t)
@@ -48,6 +58,15 @@
 
     :hook (emacs-startup . (lambda () (let ((inhibit-message t))
                                         (exec-path-from-shell-initialize)))))
+
+  (use-package dired
+    :ensure nil
+    :config
+    (when (string= system-type "darwin")
+      (setq dired-use-ls-dired t
+            insert-directory-program "/usr/local/bin/gls"))
+    :custom
+    (dired-listing-switches "-aBhl --group-directories-first"))
 
   (use-package restart-emacs
     :commands (restart-emacs)
@@ -93,7 +112,7 @@
   (use-package scheme-lang :load-path "modes" :disabled)
 
   (global-set-key (kbd "s-O") '(lambda () (interactive) (find-file "~/workspace/recharge-eevee/src/app.jsx")))
-  
+
   ;; custom settings
   (fset 'yes-or-no-p 'y-or-n-p)
   (bind-keys
