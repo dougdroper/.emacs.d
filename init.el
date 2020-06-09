@@ -33,14 +33,6 @@
 
   (package-refresh-contents)
 
-  ;; Download Evil
-  (unless (package-installed-p 'evil)
-   (package-install 'evil))
-
-  ;; Enable Evil
-  (require 'evil)
-  (evil-mode 1)
-
   (eval-when-compile
     (setq use-package-always-ensure t
           use-package-enable-imenu-support t)
@@ -58,15 +50,6 @@
 
     :hook (emacs-startup . (lambda () (let ((inhibit-message t))
                                         (exec-path-from-shell-initialize)))))
-
-  (use-package dired
-    :ensure nil
-    :config
-    (when (string= system-type "darwin")
-      (setq dired-use-ls-dired t
-            insert-directory-program "/usr/local/bin/gls"))
-    :custom
-    (dired-listing-switches "-aBhl --group-directories-first"))
 
   (use-package restart-emacs
     :commands (restart-emacs)
@@ -87,6 +70,7 @@
 
   (use-package no-littering)
   (use-package try :commands (try))
+  (global-wakatime-mode)
 
   (bind-keys :prefix-map core-mode-map :prefix "C-c C-c" :prefix-docstring "Clean whitespace or copy strings")
   (bind-keys :prefix-map change-view-map :prefix "C-c v" :prefix-docstring "Modify the view of the buffer")
@@ -101,12 +85,16 @@
   (use-package snippets   :load-path "core")
   (use-package completion :load-path "core")
   (use-package navigation :load-path "core")
+  (use-package itunes
+    :ensure nil
+    :load-path "core")
+
 
   ;; ;; Load language modes
   (use-package go          :load-path "modes" :disabled)
   (use-package web         :load-path "modes")
   (use-package rust        :load-path "modes" :disabled)
-  (use-package ruby        :load-path "modes" :disabled)
+  (use-package ruby        :load-path "modes")
   (use-package elisp       :load-path "modes" :disabled)
   (use-package clojure     :load-path "modes" :disabled)
   (use-package scheme-lang :load-path "modes" :disabled)

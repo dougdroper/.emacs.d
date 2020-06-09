@@ -2,6 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package evil
+  :hook (after-init . evil-mode))
+
+(use-package evil-multiedit
+  :config (evil-multiedit-default-keybinds))
+
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
+(use-package evil-magit)
+
 (use-package uniquify
   :ensure nil
   :config
@@ -202,6 +215,7 @@
  ("M-p"     . backward-paragraph)
  ("C-x C-z" . delete-other-windows)
  ("s-o"     . other-window)
+ ("C-c C-p" . projectile-find-file)
 
  ("C-x C-3" . (lambda () (interactive) (split-window-right) (other-window 1)))
  ("C-x C-2" . (lambda () (interactive) (split-window-below) (other-window 1)))

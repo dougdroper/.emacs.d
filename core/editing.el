@@ -67,21 +67,6 @@
   (defcopy "string" er/mark-inside-quotes)
   (defcopy "symbol" er/mark-symbol))
 
-(use-package electric-operator
-  :commands (electric-operator-get-rules-for-mode
-             electric-operator-add-rules-for-mode)
-  :hook ((prog-mode . electric-operator-mode)
-         (scheme-mode . (lambda () (electric-operator-mode 0))))
-  :config
-  (electric-operator-add-rules-for-mode 'emacs-lisp-mode (cons "-" "-") (cons "." " . "))
-  (electric-operator-add-rules-for-mode 'clojure-mode (cons "-" nil))
-  (electric-operator-add-rules-for-mode 'go-mode (cons ":=" " := "))
-  (electric-operator-add-rules-for-mode 'js2-mode (cons "==" " === "))
-  (electric-operator-add-rules-for-mode 'rjsx-mode (cons "==" " === "))
-  (electric-operator-add-rules-for-mode 'web-mode (cons "<" nil) (cons ">" nil))
-
-  )
-
 (use-package visual-regexp
   :bind (("s-r" . vr/replace)
          ("s-R" . vr/query-replace)
@@ -138,6 +123,16 @@
 (use-package sudo-edit
   :commands (sudo-edit))
 
+(defun show-buffer-file-name ()
+  "Show the full path to the current file in the minibuffer."
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (if file-name
+        (progn
+          (message file-name)
+          (kill-new file-name))
+      (error "Buffer not visiting a file"))))
+
 (delete-selection-mode 1)
 
 (bind-keys
@@ -146,6 +141,7 @@
  ("M-l"     . downcase-word)
  ("C-k"     . kill-line)
  ("C-S-k"   . kill-whole-line)
+ ("C-x C-p" . show-buffer-file-name)
  ("M-D"     . backward-kill-word)
  ("s-/"     . comment-or-uncomment-region)
  ("C-j"     . join-line))

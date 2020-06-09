@@ -14,5 +14,13 @@
 (use-package haml-mode
   :mode "\\.haml$")
 
+(use-package rspec-mode
+  )
+
+(use-package inf-ruby
+  :hook (after-init . inf-ruby-switch-setup)
+  :bind (:map inf-ruby-mode-map
+              ("C-c i" . read-only-mode)))
+
 (provide 'ruby)
 ;;; ruby.el ends here

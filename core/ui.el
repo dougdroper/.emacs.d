@@ -181,6 +181,7 @@
           ("*Package-Lint*" :size 0.4 :align 'below :autoclose t)
           (("*Gofmt Errors*" "*Go Test*") :select t :size 0.3 :align 'below :autoclose t)
           ("*How Do You*" :select t :size 0.5 :align 'below :autoclose t)
+          ("*rspec-compilation*" :size 0.3 :align 'below :autoclose t)
 
           (" *Flycheck checkers*" :select t :size 0.3 :align 'below :autoclose t)
           ((cider-inspector-mode flycheck-error-list-mode point-history-show-mode flymake-diagnostics-buffer-mode) :select t :size 0.3 :align 'below :autoclose t)

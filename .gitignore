@@ -28,6 +28,8 @@ elisp/all-the-icons*
 elisp/boop
 elisp/magit-gh-issues-emoji
 
+.cache
+
 # Dynamic Emacs Files #
 #######################
 *.emacs.desktop*

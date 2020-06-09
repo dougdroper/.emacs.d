@@ -146,5 +146,5 @@ When UNIQ is non-nil, return a uniq list."
          (album (ivy-completing-read "💿 Album: " album-candidates)))
     (-itunes-play-album album)))
 
-(provide '.itunes)
+(provide 'itunes)
 ;;; .itunes.el ends here

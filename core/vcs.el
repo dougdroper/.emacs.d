@@ -12,7 +12,7 @@
          :map magit-mode-map
          ("o"                . magit-open-file-other-window))
   :config
-  (setq magit-git-executable "/usr/local/bin/git"))
+  (setq magit-git-executable "/usr/bin/git"))
 
 (use-package magit-todos
   :after magit
