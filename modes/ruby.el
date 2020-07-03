@@ -10,6 +10,7 @@
 
 (use-package enh-ruby-mode
   :hook (ruby-mode . enh-ruby-mode) )
+(add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
 
 (use-package haml-mode
   :mode "\\.haml$")

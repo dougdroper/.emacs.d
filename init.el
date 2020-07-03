@@ -91,13 +91,10 @@
 
 
   ;; ;; Load language modes
-  (use-package go          :load-path "modes" :disabled)
   (use-package web         :load-path "modes")
-  (use-package rust        :load-path "modes" :disabled)
   (use-package ruby        :load-path "modes")
   (use-package elisp       :load-path "modes" :disabled)
-  (use-package clojure     :load-path "modes" :disabled)
-  (use-package scheme-lang :load-path "modes" :disabled)
+
 
   (global-set-key (kbd "s-O") '(lambda () (interactive) (find-file "~/workspace/recharge-eevee/src/app.jsx")))
 

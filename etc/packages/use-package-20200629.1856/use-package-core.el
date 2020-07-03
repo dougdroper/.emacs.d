@@ -1030,10 +1030,10 @@ meaning:
   "Show current statistics gathered about use-package declarations."
   (setq tabulated-list-format
         ;; The sum of column width is 80 characters:
-        #[("Package" 25 t)
-          ("Status" 13 t)
-          ("Last Event" 23 t)
-          ("Time" 10 t)])
+        [("Package" 25 t)
+         ("Status" 13 t)
+         ("Last Event" 23 t)
+         ("Time" 10 t)])
   (tabulated-list-init-header))
 
 (defun use-package-statistics-gather (keyword name after)
@@ -1394,7 +1394,9 @@ no keyword implies `:all'."
               (comment (nth 2 def)))
           (unless (and comment (stringp comment))
             (setq comment (format "Customized with use-package %s" name)))
-          `(customize-set-variable (quote ,variable) ,value ,comment)))
+          `(funcall (or (get (quote ,variable) 'custom-set) #'set-default)
+                    (quote ,variable)
+                    ,value)))
     args)
    (use-package-process-keywords name rest state)))
 
@@ -1468,7 +1470,7 @@ no keyword implies `:all'."
     (use-package-concat
      (when use-package-compute-statistics
        `((use-package-statistics-gather :config ',name nil)))
-     (if (or (null arg) (equal arg '(t)))
+     (if (and (or (null arg) (equal arg '(t))) (not use-package-inject-hooks))
          body
        (use-package-with-elapsed-timer
            (format "Configuring package %s" name-symbol)

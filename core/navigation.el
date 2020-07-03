@@ -168,14 +168,14 @@
   :bind (("s-," . goto-last-change)
          ("s-." . goto-last-change-reverse)))
 
-(use-package point-history
-  :load-path "etc/elisp-packages/point-history"
-  :hook (prog-mode . point-history-mode)
-  :bind (("C-x p" . point-history-show)
-         :map point-history-show-mode-map
-         ("q" . point-history-goto)
-         :map avy-map
-         ("h" . point-history-show)))
+;; (use-package point-history
+;;   :load-path "etc/elisp-packages/point-history"
+;;   :hook (prog-mode . point-history-mode)
+;;   :bind (("C-x p" . point-history-show)
+;;          :map point-history-show-mode-map
+;;          ("q" . point-history-goto)
+;;          :map avy-map
+;;          ("h" . point-history-show)))
 
 (use-package wgrep
   :hook (rg-mode . wgrep-rg-setup)
@@ -215,12 +215,16 @@
  ("M-p"     . backward-paragraph)
  ("C-x C-z" . delete-other-windows)
  ("s-o"     . other-window)
+
  ("C-c C-p" . projectile-find-file)
+ ("C-c C-f" . counsel-projectile-rg)
 
  ("C-x C-3" . (lambda () (interactive) (split-window-right) (other-window 1)))
  ("C-x C-2" . (lambda () (interactive) (split-window-below) (other-window 1)))
 
  )
+
+(global-display-line-numbers-mode)
 
 (provide 'navigation)
 ;;; navigation.el ends here

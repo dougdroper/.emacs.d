@@ -136,9 +136,9 @@
   :if (memq window-system '(mac ns))
   :bind (("s-O" . counsel-osx-app)))
 
-(use-package swiper
-  :bind (("C-;" . swiper-thing-at-point)
-         ("C-:" . swiper-all-thing-at-point)))
+;; (use-package swiper
+;;   :bind (("C-;" . swiper-thing-at-point)
+;;          ("C-:" . swiper-all-thing-at-point)))
 
 (use-package ivy-hydra :after ivy)
 (use-package ivy
@@ -204,7 +204,6 @@
   :config (ivy-rich-mode))
 
 (use-package which-key
-  :disabled
   :config
   (which-key-setup-side-window-right)
   (which-key-mode))
@@ -215,13 +214,10 @@
 ;; js   - npm i -g typescript-language-server; npm i -g typescript
 ;; json - npm i -g vscode-json-languageserver
 (use-package lsp-mode
-  :disabled t
-  :hook (((go-mode
+  :hook (((
            js2-mode
            rjsx-mode
-           rust-mode
-           scss-mode
-           css-mode
+           ruby-mode
            json-mode
            rustic-mode) . lsp-deferred))
   :config (setq
