@@ -42,14 +42,8 @@
     :if (memq window-system '(mac ns))
     :commands (exec-path-from-shell-getenvs
                exec-path-from-shell-setenv)
-    :config
-    (setq exec-path-from-shell-debug t)
-    (add-to-list 'exec-path-from-shell-variables "NVM_BIN")
-    (add-to-list 'exec-path-from-shell-variables "GOPATH")
-    (add-to-list 'exec-path-from-shell-variables "GEM_PATH")
-
     :hook (emacs-startup . (lambda () (let ((inhibit-message t))
-                                        (exec-path-from-shell-initialize)))))
+                                       (exec-path-from-shell-initialize)))))
 
   (use-package restart-emacs
     :commands (restart-emacs)
@@ -70,6 +64,7 @@
 
   (use-package no-littering)
   (use-package try :commands (try))
+
   (global-wakatime-mode)
 
   (bind-keys :prefix-map core-mode-map :prefix "C-c C-c" :prefix-docstring "Clean whitespace or copy strings")
